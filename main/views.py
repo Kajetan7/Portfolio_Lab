@@ -8,7 +8,10 @@ class LandingPage(View):
     def get(self, request):
         context = {
             'quantity_of_donations': Donation.objects.aggregate(total=Sum('quantity'))['total'],
-            'quantity_of_institutions': Institution.objects.count()
+            'quantity_of_institutions': Institution.objects.count(),
+            'foundations': Institution.objects.filter(type=1),
+            'non_government_organizations': Institution.objects.filter(type=2),
+            'local_charities': Institution.objects.filter(type=3)
         }
         return render(request, 'index.html', context)
 
