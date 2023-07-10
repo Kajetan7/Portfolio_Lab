@@ -16,10 +16,10 @@
         <div class="slogan--item">
           <h1>
             Lista przekazanych darow:<br />
-            Ilosc workow w sumie: {{  }} <br />
-            Organizacje, ktorym przekazano dary: {{ user.last_name }} <br />
-            Kategorie darow: {{ user.email }} <br />
-            Kategorie darow: {{ user.email }} <br />
+            Ilosc workow w sumie: {{ donated_bags }} <br />
+            Organizacje, ktorym przekazano dary: {% for donation in donations %} {{ donation.institution.name }}, {% endfor %}<br />
+            Kategorie darow: {% for donation in donations %}{% for category in donation.categories.all %} {{ category.name }}, {% endfor %}{% endfor %}<br />
+            Data odbioru: {% for donation in donations %} {{ donation.pick_up_date }}, {{ donation.pick_up_time }} {% endfor %}<br />
           </h1>
         </div>
     </div>

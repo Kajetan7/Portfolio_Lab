@@ -67,6 +67,8 @@ class Register(View):
 class UserView(View):
     def get(self, request):
         context = {
-            'user': request.user
+            'user': request.user,
+            'donated_bags': Donation.objects.filter(user_id=request.user.id).aggregate(total=Sum('quantity'))['total'],
+            'donations': Donation.objects.filter(user_id=request.user.id),
         }
         return render(request, 'user.html', context)
