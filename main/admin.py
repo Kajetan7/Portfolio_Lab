@@ -1,3 +1,16 @@
 from django.contrib import admin
+from django import forms
+from main.models import *
 
-# Register your models here.
+
+class InstitutionForm(forms.ModelForm):
+    class Meta:
+        model = Institution
+        fields = '__all__'
+
+
+class InstitutionAdmin(admin.ModelAdmin):
+    form = InstitutionForm
+
+
+admin.site.register(Institution, InstitutionAdmin)

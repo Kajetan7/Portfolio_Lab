@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_main_body %}
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+          <h1>
+            Dane uzytkownika:<br />
+            Imie: {{ user.first_name }} <br />
+            Nazwisko: {{ user.last_name }} <br />
+            Email: {{ user.email }} <br />
+          </h1>
+        </div>
+    </div>
+
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+          <h1>
+            Lista przekazanych darow:<br />
+            Ilosc workow w sumie: {{  }} <br />
+            Organizacje, ktorym przekazano dary: {{ user.last_name }} <br />
+            Kategorie darow: {{ user.email }} <br />
+            Kategorie darow: {{ user.email }} <br />
+          </h1>
+        </div>
+    </div>
+{% endblock %}

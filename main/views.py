@@ -4,6 +4,7 @@ from django.db.models import Sum
 from main.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class LandingPage(View):
@@ -18,12 +19,16 @@ class LandingPage(View):
         return render(request, 'index.html', context)
 
 
-class AddDonation(View):
+class AddDonation(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'form.html')
+        context = {
+            'categories': Category.objects.all(),
+            'institutions': Institution.objects.all()
+        }
+        return render(request, 'form.html', context)
 
 
-class Login(View):
+class LoginView(View):
     def get(self, request):
         return render(request, 'login.html')
 
@@ -59,3 +64,9 @@ class Register(View):
         return redirect('login')
 
 
+class UserView(View):
+    def get(self, request):
+        context = {
+            'user': request.user
+        }
+        return render(request, 'user.html', context)

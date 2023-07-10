@@ -17,6 +17,9 @@ class Institution(models.Model):
     type = models.CharField(max_length=32, choices=TYPES, default=1)
     categories = models.ManyToManyField(Category, null=True, through='InstitutionCategory')
 
+    def __str__(self):
+        return self.name
+
 
 class InstitutionCategory(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)

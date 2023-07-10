@@ -223,6 +223,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // TODO: Validation
 
+      const selectedCategories = Array.from(document.querySelectorAll('input[name^="category"]:checked'))
+          .map(input => input.value);
+
+      document.querySelectorAll('.form-group--checkbox').forEach(institution => {
+        const institutionCategories = Array.from(institution.querySelectorAll('.description'))
+            .map(description => description.innerText);
+
+        if (selectedCategories.length === 0 || institutionCategories.some(category => selectedCategories.includes(category))) {
+          institution.classList.add('active');
+        } else {
+          institution.classList.remove('active');
+        }
+      });
+
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
